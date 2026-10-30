@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- ================================================================= -->
+        <!-- Configuration JDBC H2 In-Memory (Autonome, rapide et sans serveur) -->
+        <!-- ================================================================= -->
+        <property name="connection.driver_class">org.h2.Driver</property>
+        <property name="connection.url">jdbc:h2:mem:tp3db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password"></property>
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- ================================================================= -->
+        <!-- Configuration alternative pour MySQL (XAMPP / WampServer)          -->
+        <!-- (Décommentez ce bloc si vous souhaitez tester avec MySQL local)   -->
+        <!-- ================================================================= -->
+        <!--
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/tp3_reservation_db?createDatabaseIfNotExist=true&amp;useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        -->
+
+        <!-- Pool de connexions interne -->
+        <property name="connection.pool_size">5</property>
+
+        <!-- Affichage et formatage des requêtes SQL générées -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="highlight_sql">true</property>
+
+        <!-- Génération et mise à jour automatique du schéma de la BD -->
+        <property name="hbm2ddl.auto">create-drop</property>
+
+        <!-- Déclaration des classes entités annotées JPA -->
+        <mapping class="com.tp.model.Salle"/>
+        <mapping class="com.tp.model.Utilisateur"/>
+        <mapping class="com.tp.model.Equipement"/>
+        <mapping class="com.tp.model.Reservation"/>
+    </session-factory>
+</hibernate-configuration>
